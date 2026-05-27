@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mailo's — Panadería & Repostería | Costa Rica</title>
-  <meta name="description" content="Panadería, repostería y pizzería artesanal en Costa Rica. Seguinos en Instagram y TikTok. Pedidos al +506 87049864." />
+  <meta name="description" content="Panadería, repostería y pizzería artesanal en Costa Rica. Seguinos en Instagram y TikTok. Pedidos al +506 8822-0360." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -429,6 +429,16 @@
       overflow: hidden;
     }
 
+    .about-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 24px;
+    }
+
     .about-photo::before {
       content: '';
       position: absolute;
@@ -760,6 +770,115 @@
       margin-bottom: 0.2rem;
     }
 
+    /* ── SELECTA STRIP ────────────────────────────── */
+    #selecta-strip {
+      background: var(--char);
+      padding: 5rem 5vw;
+      color: var(--cream);
+    }
+
+    .selecta-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .selecta-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    .selecta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #a855f7;
+      background: rgba(168,85,247,0.12);
+      border: 1px solid rgba(168,85,247,0.3);
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+
+    .selecta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .selecta-title .sel-purple { color: #c084fc; }
+
+    .selecta-desc {
+      color: rgba(253,246,236,0.65);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .selecta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #a855f7;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(168,85,247,0.3);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .selecta-link:hover { color: #c084fc; border-color: #c084fc; }
+
+    .selecta-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .sel-feat {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: rgba(253,246,236,0.04);
+      border: 1px solid rgba(253,246,236,0.07);
+      border-radius: 14px;
+      padding: 1.1rem 1.25rem;
+      transition: border-color 0.25s;
+    }
+
+    .sel-feat:hover { border-color: rgba(168,85,247,0.25); }
+
+    .sel-feat-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .sel-feat-body {}
+
+    .sel-feat-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .sel-feat-desc {
+      font-size: 0.8rem;
+      color: rgba(253,246,236,0.5);
+      line-height: 1.6;
+    }
+
     /* ── FOOTER ────────────────────────────────────── */
     footer {
       background: var(--char);
@@ -828,7 +947,7 @@
       <li><a href="#redes">Redes</a></li>
       <li><a href="#pedidos">Pedidos</a></li>
     </ul>
-    <a href="https://wa.me/50687049864" class="btn-nav" target="_blank">Hacer pedido</a>
+    <a href="https://wa.me/50688220360" class="btn-nav" target="_blank">Hacer pedido</a>
     <button class="nav-hamburger" id="hamburger" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
@@ -844,7 +963,7 @@
         Ahora podés pedirlo directo a tu mesa.
       </p>
       <div class="hero-btns">
-        <a href="https://wa.me/50687049864" class="btn-wa" target="_blank">
+        <a href="https://wa.me/50688220360" class="btn-wa" target="_blank">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.529 5.842L.053 24l6.324-1.646A11.938 11.938 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.594-.478-5.112-1.314l-.366-.214-3.756.978.999-3.661-.238-.381A9.963 9.963 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
           Pedir ahora
         </a>
@@ -887,7 +1006,7 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-photo fade-up">
-          🧑‍🍳
+          <img src="mailopana.jpg" alt="Mailo, panadero y repostero artesanal de Costa Rica" />
           <div class="about-photo-label">
             <strong>Mailo</strong>
             <span>Chef & Panadero Artesanal</span>
@@ -920,7 +1039,7 @@
           <div class="about-contact fade-up">
             <div class="about-contact-icon">📞</div>
             <div class="about-contact-text">
-              <strong>+506 8704-9864</strong>
+              <strong>+506 8822-0360</strong>
               Consultas, pedidos y más información
             </div>
           </div>
@@ -1088,9 +1207,9 @@
       <p class="sec-sub">Escribinos por WhatsApp o por Instagram. Te respondemos rápido.</p>
 
       <div class="pedidos-options">
-        <a href="https://wa.me/50687049864" class="pedido-btn pedido-wa" target="_blank" rel="noopener">
+        <a href="https://wa.me/50688220360" class="pedido-btn pedido-wa" target="_blank" rel="noopener">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.529 5.842L.053 24l6.324-1.646A11.938 11.938 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.594-.478-5.112-1.314l-.366-.214-3.756.978.999-3.661-.238-.381A9.963 9.963 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-          WhatsApp · +506 8704-9864
+          WhatsApp · +506 8822-0360
         </a>
         <a href="https://www.instagram.com/mailopana" class="pedido-btn pedido-ig" target="_blank" rel="noopener">
           📸 Instagram · @mailopana
@@ -1109,6 +1228,59 @@
     </div>
   </section>
 
+  <!-- SELECTA STRIP -->
+  <section id="selecta-strip">
+    <div class="selecta-inner">
+
+      <div>
+        <div class="selecta-badge">⚡ Powered by Selecta AI</div>
+        <h2 class="selecta-title">Tu WhatsApp responde<br><span class="sel-purple">aunque estés durmiendo</span></h2>
+        <p class="selecta-desc">
+          El WhatsApp de Mailo's está automatizado con inteligencia artificial por
+          <strong style="color:var(--cream);">Selecta</strong> — una empresa costarricense que ayuda
+          a negocios con alto volumen de mensajes a nunca perder un pedido.
+          El sistema atiende, registra y responde cada consulta en menos de 2 segundos,
+          las 24 horas, los 7 días de la semana.
+        </p>
+        <a href="https://alephdjcs.github.io/selecta/" class="selecta-link" target="_blank" rel="noopener">
+          Conocé más sobre Selecta →
+        </a>
+      </div>
+
+      <div class="selecta-features">
+        <div class="sel-feat">
+          <div class="sel-feat-icon">⚡</div>
+          <div class="sel-feat-body">
+            <div class="sel-feat-title">Respuesta en menos de 2 segundos</div>
+            <div class="sel-feat-desc">Cada mensaje recibe atención inmediata, sin importar la hora o el día.</div>
+          </div>
+        </div>
+        <div class="sel-feat">
+          <div class="sel-feat-icon">🛒</div>
+          <div class="sel-feat-body">
+            <div class="sel-feat-title">Pedidos registrados automáticamente</div>
+            <div class="sel-feat-desc">El sistema toma el pedido, lo guarda y lo deja listo para que el equipo lo prepare.</div>
+          </div>
+        </div>
+        <div class="sel-feat">
+          <div class="sel-feat-icon">🌙</div>
+          <div class="sel-feat-body">
+            <div class="sel-feat-title">Sin pedidos perdidos fuera de horario</div>
+            <div class="sel-feat-desc">Los clientes que escriben a las 10pm también quedan atendidos. Ninguna venta se escapa.</div>
+          </div>
+        </div>
+        <div class="sel-feat">
+          <div class="sel-feat-icon">📋</div>
+          <div class="sel-feat-body">
+            <div class="sel-feat-title">Panel de pedidos en tiempo real</div>
+            <div class="sel-feat-desc">Mailo ve todos los pedidos del día organizados en un solo lugar, sin revisar chats.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <div class="footer-logo">Mailo<span>'s</span></div>
@@ -1116,9 +1288,9 @@
       <a href="https://www.instagram.com/mailopana" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.tiktok.com/@mailopana" target="_blank" rel="noopener">TikTok</a>
       <a href="https://www.youtube.com/@mailopana" target="_blank" rel="noopener">YouTube</a>
-      <a href="https://wa.me/50687049864" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://wa.me/50688220360" target="_blank" rel="noopener">WhatsApp</a>
     </div>
-    <p>Panadería · Repostería · Pizza &nbsp;·&nbsp; Costa Rica &nbsp;·&nbsp; +506 8704-9864</p>
+    <p>Panadería · Repostería · Pizza &nbsp;·&nbsp; Costa Rica &nbsp;·&nbsp; +506 8822-0360</p>
     <p style="margin-top:0.5rem;">© 2026 Mailo's. Hecho con 🍞 en Costa Rica.</p>
   </footer>
 
