@@ -1,206 +1,1149 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<style>
-  body { font-family: Arial, sans-serif; font-size: 13px; color: #1A202C; margin: 40px 60px; line-height: 1.6; }
-  h1 { font-size: 18px; font-weight: bold; color: #1A365D; margin: 28px 0 10px; border-bottom: 2px solid #CBD5E0; padding-bottom: 4px; }
-  .doc-title { font-size: 24px; font-weight: bold; color: #1A365D; text-align: center; margin-bottom: 6px; }
-  .doc-sub { font-size: 13px; color: #718096; text-align: center; font-style: italic; margin-bottom: 20px; }
-  .warning { font-style: italic; font-size: 12px; color: #7B3F00; background: #FFFAF0; border-left: 3px solid #D97706; padding: 6px 10px; margin: 8px 0; }
-  .kv { margin: 4px 0; }
-  .kv b { color: #2D3748; }
-  ul { margin: 6px 0 6px 20px; padding: 0; }
-  ul li { margin-bottom: 3px; }
-  hr { border: none; border-top: 1px solid #CBD5E0; margin: 20px 0; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mailo's — Panadería & Repostería | Costa Rica</title>
+  <meta name="description" content="Panadería, repostería y pizzería artesanal en Costa Rica. Seguinos en Instagram y TikTok. Pedidos al +506 87049864." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  table { border-collapse: collapse; width: 100%; margin-top: 10px; font-size: 12px; }
-  thead tr { background-color: #1A365D; }
-  thead th { color: #FFFFFF; font-weight: bold; padding: 8px 10px; text-align: left; border: 1px solid #2C5282; }
-  tbody tr:nth-child(even) { background-color: #EBF8F4; }
-  tbody tr:nth-child(odd)  { background-color: #FFFFFF; }
-  tbody tr.empty-row td    { background-color: #F7FAFC; height: 22px; }
-  tbody td { padding: 6px 10px; border: 1px solid #CBD5E0; vertical-align: middle; }
-  .no-disp { color: #C53030; font-weight: bold; }
-  .disp    { color: #276749; }
-</style>
+    :root {
+      --cream:    #fdf6ec;
+      --cream-dk: #f5e8d0;
+      --brown:    #6b3f1f;
+      --brown-lt: #9b5e35;
+      --amber:    #d97706;
+      --amber-lt: #f59e0b;
+      --char:     #1c120a;
+      --char-lt:  #2e1d0e;
+      --text:     #3d2010;
+      --text-lt:  #7a4a2a;
+      --white:    #ffffff;
+      --card-bg:  #fffaf4;
+    }
+
+    html { scroll-behavior: smooth; }
+    section[id] { scroll-margin-top: 68px; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ───────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(253,246,236,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(107,63,31,0.1);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--brown);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--amber); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-lt);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--brown); }
+
+    .btn-nav {
+      background: var(--brown);
+      color: var(--white);
+      border: none;
+      padding: 0.55rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-nav:hover { background: var(--brown-lt); transform: translateY(-1px); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--brown);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 720px) {
+      .nav-links, .btn-nav { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 62px; left: 0; right: 0;
+        background: rgba(253,246,236,0.98);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(107,63,31,0.12);
+        padding: 1.5rem 2rem;
+        gap: 1.25rem;
+        z-index: 99;
+      }
+      .nav-links.open a { font-size: 1rem; }
+    }
+
+    /* ── HERO ──────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 8rem 5vw 5rem;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dk) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217,119,6,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    @media (max-width: 860px) {
+      #hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 7rem 2rem 4rem;
+        gap: 2.5rem;
+      }
+      .hero-visual { order: -1; }
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(107,63,31,0.08);
+      border: 1px solid rgba(107,63,31,0.18);
+      color: var(--brown);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--char);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-content h1 em {
+      font-style: normal;
+      color: var(--amber);
+    }
+
+    .hero-content p {
+      color: var(--text-lt);
+      font-size: 1.05rem;
+      max-width: 420px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 860px) {
+      .hero-content p { margin: 0 auto 2rem; }
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero-btns { justify-content: center; }
+    }
+
+    .btn-primary {
+      background: var(--brown);
+      color: var(--white);
+      border: none;
+      padding: 0.85rem 1.75rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 18px rgba(107,63,31,0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--brown-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(107,63,31,0.35);
+    }
+
+    .btn-wa {
+      background: #25d366;
+      color: var(--white);
+      border: none;
+      padding: 0.85rem 1.75rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn-wa:hover { opacity: 0.88; transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(107,63,31,0.12);
+    }
+
+    @media (max-width: 860px) {
+      .hero-stats { justify-content: center; }
+    }
+
+    .hstat .val {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--brown);
+    }
+
+    .hstat .lbl {
+      font-size: 0.75rem;
+      color: var(--text-lt);
+      font-weight: 500;
+    }
+
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-img-frame {
+      width: 420px;
+      height: 480px;
+      border-radius: 32px;
+      background: linear-gradient(145deg, var(--brown), var(--amber));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9rem;
+      box-shadow: 0 24px 80px rgba(107,63,31,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-img-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+    }
+
+    .hero-float-badge {
+      position: absolute;
+      bottom: -10px;
+      right: -20px;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-float-badge .icon { font-size: 1.75rem; }
+
+    .hero-float-badge .text { font-size: 0.78rem; }
+    .hero-float-badge .text strong {
+      display: block;
+      font-weight: 700;
+      color: var(--char);
+      font-size: 0.88rem;
+    }
+    .hero-float-badge .text span { color: var(--text-lt); }
+
+    .hero-float-tiktok {
+      position: absolute;
+      top: 20px;
+      left: -30px;
+      background: var(--char);
+      color: var(--white);
+      border-radius: 14px;
+      padding: 0.85rem 1.1rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    .hero-float-tiktok strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #fe2c55;
+    }
+
+    @media (max-width: 480px) {
+      .hero-img-frame { width: 300px; height: 340px; font-size: 7rem; }
+      .hero-float-badge, .hero-float-tiktok { display: none; }
+    }
+
+    /* ── SECTION HELPERS ───────────────────────────── */
+    section { padding: 6rem 5vw; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .sec-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      background: rgba(217,119,6,0.1);
+      border: 1px solid rgba(217,119,6,0.25);
+      padding: 0.28rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--char);
+      margin-bottom: 0.85rem;
+    }
+
+    .sec-sub {
+      color: var(--text-lt);
+      font-size: 0.95rem;
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    /* ── ABOUT ─────────────────────────────────────── */
+    #about {
+      background: var(--char);
+      color: var(--cream);
+    }
+
+    #about .sec-title { color: var(--cream); }
+    #about .sec-sub { color: rgba(253,246,236,0.65); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 24px;
+      background: linear-gradient(160deg, var(--char-lt), #3d1f05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+    }
+
+    .about-photo-label {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+    }
+
+    .about-photo-label strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--cream);
+    }
+
+    .about-photo-label span {
+      font-size: 0.82rem;
+      color: var(--amber-lt);
+    }
+
+    .about-text { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .about-text p {
+      color: rgba(253,246,236,0.75);
+      font-size: 0.98rem;
+      line-height: 1.8;
+    }
+
+    .about-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .pill {
+      background: rgba(217,119,6,0.15);
+      border: 1px solid rgba(217,119,6,0.3);
+      color: var(--amber-lt);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+    }
+
+    .about-contact {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(253,246,236,0.04);
+      border: 1px solid rgba(253,246,236,0.08);
+      border-radius: 14px;
+    }
+
+    .about-contact-icon { font-size: 1.75rem; }
+
+    .about-contact-text { font-size: 0.85rem; color: rgba(253,246,236,0.55); }
+    .about-contact-text strong {
+      display: block;
+      color: var(--cream);
+      font-size: 1rem;
+    }
+
+    /* ── PRODUCTS ──────────────────────────────────── */
+    #productos { background: var(--cream); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(107,63,31,0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 50px rgba(107,63,31,0.15);
+    }
+
+    .product-thumb {
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+    }
+
+    .product-thumb-pan  { background: linear-gradient(135deg, #f5e8cc, #e8d0a0); }
+    .product-thumb-dona { background: linear-gradient(135deg, #f0d4c0, #d4956a); }
+    .product-thumb-pizza { background: linear-gradient(135deg, #f5dcc0, #e8a060); }
+    .product-thumb-cerdo { background: linear-gradient(135deg, #e8d0c0, #c48060); }
+    .product-thumb-repost { background: linear-gradient(135deg, #f8e8d0, #e8c090); }
+    .product-thumb-torta { background: linear-gradient(135deg, #f0dce0, #d4a0a8); }
+
+    .product-body { padding: 1.25rem 1.5rem 1.5rem; }
+
+    .product-cat {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.4rem;
+    }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--char);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-desc {
+      font-size: 0.82rem;
+      color: var(--text-lt);
+      line-height: 1.6;
+    }
+
+    /* ── SOCIAL ────────────────────────────────────── */
+    #redes {
+      background: var(--char-lt);
+      color: var(--cream);
+    }
+
+    #redes .sec-title { color: var(--cream); }
+    #redes .sec-sub { color: rgba(253,246,236,0.6); max-width: 600px; }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .social-card {
+      border-radius: 20px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .social-card:hover { transform: translateY(-4px); }
+
+    .sc-instagram {
+      background: linear-gradient(145deg, #833ab4, #fd1d1d, #fcb045);
+      box-shadow: 0 8px 32px rgba(131,58,180,0.35);
+    }
+
+    .sc-tiktok {
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+
+    .sc-youtube {
+      background: #ff0000;
+      box-shadow: 0 8px 32px rgba(255,0,0,0.3);
+    }
+
+    .sc-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .sc-icon { font-size: 2rem; }
+
+    .sc-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .sc-handle {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .sc-stats {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .sc-stat .val {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .sc-stat .lbl {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .sc-cta {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      align-self: flex-start;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: background 0.2s;
+    }
+
+    .sc-cta:hover { background: rgba(255,255,255,0.25); }
+
+    /* ── FEATURED CONTENT STRIP ────────────────────── */
+    .content-strip {
+      margin-top: 3rem;
+    }
+
+    .content-strip h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--cream);
+      margin-bottom: 1.25rem;
+    }
+
+    .content-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .content-pill {
+      background: rgba(253,246,236,0.06);
+      border: 1px solid rgba(253,246,236,0.12);
+      color: rgba(253,246,236,0.8);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      cursor: default;
+    }
+
+    /* ── CTA / PEDIDOS ─────────────────────────────── */
+    #pedidos {
+      background: linear-gradient(135deg, var(--brown) 0%, var(--char) 100%);
+      color: var(--cream);
+      text-align: center;
+    }
+
+    #pedidos .sec-title { color: var(--cream); max-width: 640px; margin: 0 auto 0.85rem; }
+    #pedidos .sec-sub { color: rgba(253,246,236,0.65); margin: 0 auto 2.5rem; }
+
+    .pedidos-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .pedido-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .pedido-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    .pedido-wa {
+      background: #25d366;
+      color: var(--white);
+      box-shadow: 0 8px 30px rgba(37,211,102,0.35);
+    }
+
+    .pedido-ig {
+      background: transparent;
+      color: var(--cream);
+      border: 2px solid rgba(253,246,236,0.3);
+    }
+
+    .waze-strip {
+      margin-top: 3rem;
+      padding: 1.5rem 2rem;
+      background: rgba(253,246,236,0.05);
+      border: 1px solid rgba(253,246,236,0.1);
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 480px;
+    }
+
+    .waze-strip .icon { font-size: 2rem; }
+
+    .waze-strip p {
+      text-align: left;
+      font-size: 0.9rem;
+      color: rgba(253,246,236,0.7);
+    }
+
+    .waze-strip p strong {
+      display: block;
+      color: var(--cream);
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    /* ── FOOTER ────────────────────────────────────── */
+    footer {
+      background: var(--char);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(253,246,236,0.06);
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--cream);
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-logo span { color: var(--amber); }
+
+    footer p {
+      color: rgba(253,246,236,0.4);
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .footer-socials a {
+      color: rgba(253,246,236,0.5);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-socials a:hover { color: var(--amber-lt); }
+
+    /* ── SCROLL ANIMATIONS ─────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+  </style>
 </head>
 <body>
 
-<div class="doc-title">Mailo's — Knowledge Base + Catálogo</div>
-<div class="doc-sub">Documento unificado para el sistema de IA</div>
-<div class="warning">⚠ Este documento es leído por el sistema de IA. El equipo puede editar precios, disponibilidad y notas. No cambiar los títulos de sección en MAYÚSCULAS.</div>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Mailo<span>'s</span></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">Sobre Mailo</a></li>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#redes">Redes</a></li>
+      <li><a href="#pedidos">Pedidos</a></li>
+    </ul>
+    <a href="https://wa.me/50687049864" class="btn-nav" target="_blank">Hacer pedido</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-<hr>
-<h1>EMPRESA</h1>
-<div class="kv"><b>NOMBRE:</b> Mailo's</div>
-<div class="kv"><b>DESCRIPCION:</b> Panadería y repostería en Desamparados, Costa Rica. Especializada en productos dulces, salados, postres tradicionales y café. Todo fresco y artesanal cada día.</div>
-<br>
-<b>Servicios:</b>
-<ul>
-  <li>Panadería artesanal</li><li>Repostería</li><li>Productos dulces y salados</li>
-  <li>Café y bebidas</li><li>Postres</li><li>Pedidos personalizados</li><li>Atención por WhatsApp</li>
-</ul>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-tag">🍞 Panadería · Repostería · Pizza &nbsp;·&nbsp; Costa Rica</div>
+      <h1>El sabor<br>de lo <em>hecho<br>con amor</em></h1>
+      <p>
+        Más de 286K seguidores nos siguen por las recetas, el proceso y el sabor artesanal.
+        Ahora podés pedirlo directo a tu mesa.
+      </p>
+      <div class="hero-btns">
+        <a href="https://wa.me/50687049864" class="btn-wa" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.529 5.842L.053 24l6.324-1.646A11.938 11.938 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.594-.478-5.112-1.314l-.366-.214-3.756.978.999-3.661-.238-.381A9.963 9.963 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Pedir ahora
+        </a>
+        <a href="#productos" class="btn-primary">Ver productos</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat">
+          <span class="val">286K</span>
+          <span class="lbl">Instagram</span>
+        </div>
+        <div class="hstat">
+          <span class="val">537K</span>
+          <span class="lbl">TikTok</span>
+        </div>
+        <div class="hstat">
+          <span class="val">6.7M</span>
+          <span class="lbl">Me gustas</span>
+        </div>
+      </div>
+    </div>
 
-<hr>
-<h1>HORARIOS Y CONTACTO</h1>
-<div class="kv"><b>LUNES A SÁBADO:</b> 6:00 a.m. a 7:00 p.m.</div>
-<div class="kv"><b>DOMINGO:</b> Cerrado</div>
-<div class="kv"><b>FERIADOS:</b> Mailo's atiende durante feriados</div>
-<div class="kv"><b>WHATSAPP:</b> 8822-0360</div>
-<div class="kv"><b>INSTAGRAM:</b> https://www.instagram.com/mailopana/</div>
-<div class="kv"><b>FACEBOOK:</b> https://www.facebook.com/mailopana/</div>
-<div class="kv"><b>TIKTOK:</b> https://www.tiktok.com/@mailopana</div>
-<div class="kv"><b>YOUTUBE:</b> https://www.youtube.com/@Mailopana</div>
+    <div class="hero-visual">
+      <div class="hero-img-frame">🍞</div>
+      <div class="hero-float-badge">
+        <div class="icon">📍</div>
+        <div class="text">
+          <strong>En Waze</strong>
+          <span>Mailo's Pizza</span>
+        </div>
+      </div>
+      <div class="hero-float-tiktok">
+        <strong>537K</strong>
+        seguidores<br>en TikTok
+      </div>
+    </div>
+  </section>
 
-<hr>
-<h1>UBICACIÓN</h1>
-<div class="kv"><b>PAÍS:</b> Costa Rica</div>
-<div class="kv"><b>PROVINCIA:</b> San José</div>
-<div class="kv"><b>CANTÓN:</b> Desamparados</div>
-<div class="kv"><b>SECTOR:</b> Las Gravilias</div>
-<div class="kv"><b>REFERENCIA:</b> Panadería Repostería Mailo's Pizza</div>
-<div class="kv"><b>PARQUEO:</b> No hay parqueo privado. Normalmente hay espacios cercanos disponibles.</div>
+  <!-- SOBRE MAILO -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-photo fade-up">
+          🧑‍🍳
+          <div class="about-photo-label">
+            <strong>Mailo</strong>
+            <span>Chef & Panadero Artesanal</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <div>
+            <div class="sec-tag">Sobre Mailo</div>
+            <h2 class="sec-title fade-up">Del horno a<br>sus manos</h2>
+          </div>
+          <p class="fade-up">
+            Mailo es panadero, repostero y cocinero costarricense con más de
+            800K seguidores combinados en Instagram y TikTok.
+            Lo que empezó como pasión por el pan artesanal se convirtió en
+            una comunidad que sigue cada receta, cada proceso, cada horneada.
+          </p>
+          <p class="fade-up">
+            Hoy en día, desde su panadería y repostería, Mailo no solo enseña —
+            también produce. Panes, donas rellenas, pierna de cerdo, pizzas y
+            una gran variedad de repostería que podés pedir directamente.
+          </p>
+          <div class="about-pills fade-up">
+            <span class="pill">🍞 Pan artesanal</span>
+            <span class="pill">🍩 Donas rellenas</span>
+            <span class="pill">🍕 Pizza</span>
+            <span class="pill">🍖 Pierna de cerdo</span>
+            <span class="pill">🎂 Repostería</span>
+            <span class="pill">📱 Creador de contenido</span>
+          </div>
+          <div class="about-contact fade-up">
+            <div class="about-contact-icon">📞</div>
+            <div class="about-contact-text">
+              <strong>+506 8704-9864</strong>
+              Consultas, pedidos y más información
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<hr>
-<h1>PAGOS</h1>
-<div class="kv"><b>MÉTODOS ACEPTADOS:</b> Efectivo, Tarjeta, SINPE Móvil</div>
-<div class="warning">⚠ El SINPE móvil se realiza al momento de la entrega o retiro para su validación.</div>
+  <!-- PRODUCTOS -->
+  <section id="productos">
+    <div class="container">
+      <div class="fade-up">
+        <div class="sec-tag">Lo que hacemos</div>
+        <h2 class="sec-title">Productos artesanales</h2>
+        <p class="sec-sub">Cada producto está hecho con ingredientes de calidad y el cuidado de quien ama lo que hace.</p>
+      </div>
 
-<hr>
-<h1>PEDIDOS</h1>
-<div class="kv"><b>DATOS REQUERIDOS:</b> Nombre, correo electrónico, productos y cantidades</div>
-<div class="warning">⚠ Algunos productos pueden agotarse durante el día.</div>
+      <div class="products-grid">
+        <div class="product-card fade-up">
+          <div class="product-thumb product-thumb-pan">🍞</div>
+          <div class="product-body">
+            <div class="product-cat">Panadería</div>
+            <div class="product-name">Pan artesanal</div>
+            <p class="product-desc">Panes frescos horneados a diario con masa madre y técnicas tradicionales.</p>
+          </div>
+        </div>
+        <div class="product-card fade-up">
+          <div class="product-thumb product-thumb-dona">🍩</div>
+          <div class="product-body">
+            <div class="product-cat">Repostería</div>
+            <div class="product-name">Donas rellenas</div>
+            <p class="product-desc">Las famosas donas rellenas que se viralizaron en TikTok. Con crema, nutella, frutas y más.</p>
+          </div>
+        </div>
+        <div class="product-card fade-up">
+          <div class="product-thumb product-thumb-pizza">🍕</div>
+          <div class="product-body">
+            <div class="product-cat">Pizzería</div>
+            <div class="product-name">Pizzas artesanales</div>
+            <p class="product-desc">Masa hecha a mano, ingredientes frescos y sabores costarricenses que no vas a olvidar.</p>
+          </div>
+        </div>
+        <div class="product-card fade-up">
+          <div class="product-thumb product-thumb-cerdo">🍖</div>
+          <div class="product-body">
+            <div class="product-cat">Cocina</div>
+            <div class="product-name">Pierna de cerdo</div>
+            <p class="product-desc">Recetas especiales de pierna de cerdo, preparadas con técnicas que Mailo comparte en sus videos.</p>
+          </div>
+        </div>
+        <div class="product-card fade-up">
+          <div class="product-thumb product-thumb-repost">🧁</div>
+          <div class="product-body">
+            <div class="product-cat">Repostería</div>
+            <div class="product-name">Postres & dulces</div>
+            <p class="product-desc">Desde pasteles hasta dulces artesanales, todo con el sello de calidad de Mailo's.</p>
+          </div>
+        </div>
+        <div class="product-card fade-up">
+          <div class="product-thumb product-thumb-torta">🎂</div>
+          <div class="product-body">
+            <div class="product-cat">Eventos</div>
+            <div class="product-name">Tortas especiales</div>
+            <p class="product-desc">Tortas personalizadas para cumpleaños, bodas y ocasiones especiales. Pedido con anticipación.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<hr>
-<h1>CANCELACIONES</h1>
-<div class="kv"><b>PERMITIDAS:</b> Sí</div>
-<div class="kv"><b>REQUISITOS:</b> Mismo número de WhatsApp + ID del pedido</div>
-<div class="warning">⚠ No se cancela por nombre de producto ni descripciones ambiguas.</div>
+  <!-- REDES SOCIALES -->
+  <section id="redes">
+    <div class="container">
+      <div class="fade-up">
+        <div class="sec-tag">Comunidad</div>
+        <h2 class="sec-title">Seguinos en redes</h2>
+        <p class="sec-sub">Más de 800K personas siguen el proceso, las recetas y la magia del horno cada día.</p>
+      </div>
 
-<hr>
-<h1>ESTADOS DE PEDIDO</h1>
-<div class="kv"><b>Pendiente:</b> Pedido recibido</div>
-<div class="kv"><b>Preparando:</b> En preparación</div>
-<div class="kv"><b>Listo para Entregar:</b> Listo para retiro o entrega</div>
-<div class="kv"><b>Entregado:</b> Pedido completado</div>
-<div class="kv"><b>Cancelado:</b> Pedido cancelado</div>
+      <div class="social-grid">
+        <a href="https://www.instagram.com/mailopana" class="social-card sc-instagram fade-up" target="_blank" rel="noopener">
+          <div class="sc-header">
+            <div class="sc-icon">📸</div>
+            <div>
+              <div class="sc-name">Instagram</div>
+              <div class="sc-handle">@mailopana</div>
+            </div>
+          </div>
+          <div class="sc-stats">
+            <div class="sc-stat">
+              <span class="val">286K</span>
+              <span class="lbl">Seguidores</span>
+            </div>
+            <div class="sc-stat">
+              <span class="val">4,353</span>
+              <span class="lbl">Publicaciones</span>
+            </div>
+          </div>
+          <span class="sc-cta">Ver perfil →</span>
+        </a>
 
-<hr>
-<h1>MODIFICACIONES</h1>
-<div class="kv">NO DISPONIBLE. Para cambios: cancelar con ID y crear nuevo pedido.</div>
+        <a href="https://www.tiktok.com/@mailopana" class="social-card sc-tiktok fade-up" target="_blank" rel="noopener">
+          <div class="sc-header">
+            <div class="sc-icon">🎵</div>
+            <div>
+              <div class="sc-name">TikTok</div>
+              <div class="sc-handle">@mailopana</div>
+            </div>
+          </div>
+          <div class="sc-stats">
+            <div class="sc-stat">
+              <span class="val">537K</span>
+              <span class="lbl">Seguidores</span>
+            </div>
+            <div class="sc-stat">
+              <span class="val">6.7M</span>
+              <span class="lbl">Me gustas</span>
+            </div>
+          </div>
+          <span class="sc-cta">Ver videos →</span>
+        </a>
 
-<hr>
-<h1>TIEMPO DE PREPARACIÓN</h1>
-<div class="kv">Aproximadamente 15 minutos desde el estado "Preparando". Puede variar según demanda.</div>
+        <a href="https://www.youtube.com/@mailopana" class="social-card sc-youtube fade-up" target="_blank" rel="noopener">
+          <div class="sc-header">
+            <div class="sc-icon">▶️</div>
+            <div>
+              <div class="sc-name">YouTube</div>
+              <div class="sc-handle">@mailopana</div>
+            </div>
+          </div>
+          <div class="sc-stats">
+            <div class="sc-stat">
+              <span class="val">Recetas</span>
+              <span class="lbl">paso a paso</span>
+            </div>
+            <div class="sc-stat">
+              <span class="val">Videos</span>
+              <span class="lbl">de proceso</span>
+            </div>
+          </div>
+          <span class="sc-cta">Ver canal →</span>
+        </a>
+      </div>
 
-<hr>
-<h1>CATÁLOGO DE PRODUCTOS</h1>
-<div class="warning">⚠ Para marcar NO DISPONIBLE escribir exactamente: NO DISPONIBLE — Para disponible: DISPONIBLE — En Notas agregar detalles como "Solo sabor chocolate" o "Hasta el viernes"</div>
+      <div class="content-strip fade-up">
+        <h3>Contenido popular en TikTok</h3>
+        <div class="content-pills">
+          <span class="content-pill">🍩 Donas rellenas</span>
+          <span class="content-pill">🍖 Pierna de cerdo</span>
+          <span class="content-pill">🍞 Pan de masa madre</span>
+          <span class="content-pill">🍕 Pizza artesanal</span>
+          <span class="content-pill">📸 Fotos del proceso</span>
+          <span class="content-pill">🧑‍🍳 Detrás de cámaras</span>
+          <span class="content-pill">🎁 Regalías FIFA</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<table>
-  <thead>
-    <tr><th>Producto</th><th>Precio</th><th>Disponibilidad</th><th>Notas</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Arroz con leche</td><td>₡1,600</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Baguette</td><td>₡800</td><td class="no-disp">NO DISPONIBLE</td><td></td></tr>
-    <tr><td>Baguette con mantequilla</td><td>₡2,000</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Café grande</td><td>₡2,000</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Café pequeño</td><td>₡1,200</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Cheesecake de chocolate</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Chocoquesillo</td><td>₡2,500</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Cocoquesillo</td><td>₡2,500</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Empanaditas</td><td>₡400</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Enchilada</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Enchilada de pinto</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Galleta chocolate chip</td><td>₡1,000</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Galleta decorada</td><td>₡1,000</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Oreja</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Pan bonete dulce</td><td>₡400</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Pan casero</td><td>₡400</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Pan con queso crema</td><td>₡2,300</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Pan con queso crema y fresa</td><td>₡2,300</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Pan con queso crema y piña</td><td>₡2,300</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Pan mantequilla</td><td>₡400</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Pastel de carne</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Pastel de jamón y queso</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Pastel de pollo</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Pastel de queso</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Pastel especial de carne</td><td>₡2,000</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Pañuelo</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Queque de zanahoria</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Queque seco</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Quesillo tradicional</td><td>₡2,200</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Red Velvet</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Tamal asado</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Tamal de elote</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Tamal de maicena</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Tamal de yuca</td><td>₡1,800</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Torta de queso</td><td>₡2,200</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Tres leches / cinco leches</td><td>₡3,200</td><td class="no-disp">NO DISPONIBLE</td><td></td></tr>
-    <tr><td>Tres leches con crema y fresas</td><td>₡4,700</td><td class="no-disp">NO DISPONIBLE</td><td></td></tr>
-    <tr><td>Tres leches con toppings</td><td>₡3,200</td><td class="no-disp">NO DISPONIBLE</td><td></td></tr>
-    <tr><td>Trenza de dulce de leche</td><td>₡2,300</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr><td>Vainiquesillo</td><td>₡2,500</td><td class="disp">DISPONIBLE</td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-    <tr class="empty-row"><td></td><td></td><td></td><td></td></tr>
-  </tbody>
-</table>
+  <!-- PEDIDOS -->
+  <section id="pedidos">
+    <div class="container">
+      <div class="sec-tag">¿Listo para probar?</div>
+      <h2 class="sec-title">Hacé tu pedido hoy</h2>
+      <p class="sec-sub">Escribinos por WhatsApp o por Instagram. Te respondemos rápido.</p>
 
-<hr>
-<h1>ALCANCE DEL ASISTENTE</h1>
-<ul>
-  <li>Tomar pedidos nuevos</li>
-  <li>Solicitar datos faltantes</li>
-  <li>Guiar al cliente para consultar pedidos</li>
-  <li>Guiar al cliente para cancelar pedidos</li>
-  <li>Responder preguntas frecuentes</li>
-</ul>
+      <div class="pedidos-options">
+        <a href="https://wa.me/50687049864" class="pedido-btn pedido-wa" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.529 5.842L.053 24l6.324-1.646A11.938 11.938 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.594-.478-5.112-1.314l-.366-.214-3.756.978.999-3.661-.238-.381A9.963 9.963 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          WhatsApp · +506 8704-9864
+        </a>
+        <a href="https://www.instagram.com/mailopana" class="pedido-btn pedido-ig" target="_blank" rel="noopener">
+          📸 Instagram · @mailopana
+        </a>
+      </div>
 
-<hr>
-<h1>TONO Y EXPERIENCIA</h1>
-<ul>
-  <li>Profesional</li><li>Humana</li><li>Cercana</li>
-  <li>Organizada</li><li>Amigable</li><li>Rápida</li>
-</ul>
+      <div style="display:flex; justify-content:center; margin-top:3rem;">
+        <div class="waze-strip fade-up">
+          <div class="icon">🗺️</div>
+          <p>
+            <strong>Encuéntranos en Waze</strong>
+            Buscá "Panadería Repostería Mailo's Pizza" — Costa Rica
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<hr>
-<h1>INFORMACIÓN IMPORTANTE</h1>
-<ul>
-  <li>Los precios pueden variar según toppings o variantes.</li>
-  <li>La disponibilidad puede cambiar durante el día.</li>
-  <li>Si un producto está como NO DISPONIBLE, informar al cliente amablemente y sugerir otro.</li>
-  <li>La IA nunca debe inventar precios, disponibilidad ni tiempos estimados.</li>
-</ul>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Mailo<span>'s</span></div>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/mailopana" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@mailopana" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://www.youtube.com/@mailopana" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://wa.me/50687049864" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <p>Panadería · Repostería · Pizza &nbsp;·&nbsp; Costa Rica &nbsp;·&nbsp; +506 8704-9864</p>
+    <p style="margin-top:0.5rem;">© 2026 Mailo's. Hecho con 🍞 en Costa Rica.</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('#navLinks a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+  </script>
 
 </body>
 </html>
